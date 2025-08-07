@@ -117,3 +117,4 @@ This project is part of the KidsPlay LMS educational platform.
 ---
 
 For questions or support, please refer to the main project documentation.
+# kidsPlay-LMS
