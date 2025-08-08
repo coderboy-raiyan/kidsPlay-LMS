@@ -15,6 +15,11 @@ const config = {
       ? process.env.DB_URI_LOCAL
       : process.env.DB_URI_PROD) as string) ||
     ("mongodb://127.0.0.1:27017/kidsplay-lms" as string),
+
+  CLOUD_NAME: process.env.CLOUD_NAME,
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+  REDIS_URL: process.env.REDIS_URL,
 };
 
 export default config;
