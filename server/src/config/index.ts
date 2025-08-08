@@ -9,6 +9,12 @@ const config = {
   NODE_ENV: (process.env.NODE_ENV || "development") as
     | "development"
     | "production",
+
+  DB_URI:
+    ((process.env.NODE_ENV === "development"
+      ? process.env.DB_URI_LOCAL
+      : process.env.DB_URI_PROD) as string) ||
+    ("mongodb://127.0.0.1:27017/kidsplay-lms" as string),
 };
 
 export default config;
