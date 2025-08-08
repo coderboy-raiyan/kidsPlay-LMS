@@ -4,6 +4,14 @@ import config from "./config";
 
 const server = http.createServer(app);
 
-server.listen(config.PORT, () => {
-  console.log(`Listening on PORT ${config.PORT}`);
-});
+async function bootstrap() {
+  try {
+    server.listen(config?.PORT, () => {
+      console.log(`Server is listening on PORT ${config?.PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+bootstrap();

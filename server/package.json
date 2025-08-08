@@ -1,7 +1,6 @@
 {
   "name": "server",
-  "module": "index.ts",
-  "type": "module",
+  "module": "./dist/server.js",
   "private": true,
   "scripts": {
     "dev": "bun --watch ./src/server.ts",
@@ -15,6 +14,7 @@
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.2.0",
+    "http-status": "^2.1.0",
     "nodemon": "^3.1.10",
     "tsx": "^4.20.3"
   },
