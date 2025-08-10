@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import status from "http-status";
 import config from "../../config";
 import handleCastError from "../../error/handleCastError";
+import handleMongooseValidationError from "../../error/handleValidationError";
 import { TErrorSources } from "../types/error";
 
 const globalErrorHandler = (
@@ -20,9 +21,18 @@ const globalErrorHandler = (
   ];
 
   if (err?.name === "CastError") {
-    statusCode = handleCastError(err)?.statusCode;
-    message = handleCastError(err)?.message;
-    errorSources = handleCastError(err)?.errorSources;
+    const transformError = handleCastError(err);
+    statusCode = transformError?.statusCode;
+    message = transformError?.message;
+    errorSources = transformError?.errorSources;
+  } else if (err?.name === "ValidationError") {
+    const transformError = handleMongooseValidationError(err);
+    statusCode = transformError?.statusCode;
+    message = transformError?.message;
+    errorSources = transformError?.errorSources;
+  } else if (err?.code === 11000) {
+    statusCode = status.BAD_REQUEST;
+    message = `Duplicate  ${Object.keys(err?.keyValues)} entered`;
   }
 
   return res.status(statusCode).json({
