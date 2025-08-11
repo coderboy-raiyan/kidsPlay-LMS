@@ -3,6 +3,7 @@ import cors from "cors";
 import express from "express";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import notFound from "./app/middlewares/notFound";
+import router from "./app/routes";
 import config from "./config";
 const app = express();
 
@@ -16,6 +17,9 @@ app.get("/", (req, res) => {
     message: "Server is healthy!",
   });
 });
+
+// app routes
+app.use("/api/v1", router);
 
 // route not found
 app.use(notFound);
